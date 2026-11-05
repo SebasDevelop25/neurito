@@ -1,0 +1,53 @@
+
+== 1. Sin entrenar (0 épocas) ==
+config            pérdida  acc.tr  acc.te | PURA éxito  choq  extra | ASIST éxito  choq  extra
+0 épocas              nan   0.264   0.245 |      0.034  51.4   1.00 |       0.982   0.0   4.42
+  acciones elegidas sin entrenar [ARRIBA ABAJO IZQ DER]: [470, 23, 125, 98]
+  acciones correctas del experto                      : [184, 188, 175, 169]
+  probabilidad media máxima (confianza): 0.301
+
+== 2. Épocas de entrenamiento (media de 5 semillas) ==
+config            pérdida  acc.tr  acc.te | PURA éxito  choq  extra | ASIST éxito  choq  extra
+0 épocas              nan   0.264   0.245 |      0.034  51.4   1.00 |       0.982   0.0   4.42
+100 épocas         0.1354   0.963   0.867 |      0.620   1.4   1.01 |       1.000   0.0   1.35
+200 épocas         0.0389   0.999   0.898 |      0.807   0.7   1.01 |       1.000   0.0   1.23
+400 épocas         0.0110   1.000   0.908 |      0.835   0.6   1.01 |       1.000   0.0   1.22
+
+== 3. Pura vs asistida (ver columnas PURA / ASIST arriba) ==
+config            pérdida  acc.tr  acc.te | PURA éxito  choq  extra | ASIST éxito  choq  extra
+400 épocas         0.0110   1.000   0.908 |      0.835   0.6   1.01 |       1.000   0.0   1.22
+  La diferencia de éxito entre PURA y ASIST es lo que aportan las reglas, no la red.
+
+== 4. Neuronas ocultas (400 épocas) ==
+config            pérdida  acc.tr  acc.te | PURA éxito  choq  extra | ASIST éxito  choq  extra
+16 ocultas         0.0357   0.991   0.885 |      0.785   1.0   1.01 |       1.000   0.0   1.27
+32 ocultas         0.0160   1.000   0.906 |      0.839   1.0   1.01 |       1.000   0.0   1.20
+96 ocultas         0.0110   1.000   0.908 |      0.835   0.6   1.01 |       1.000   0.0   1.22
+128 ocultas        0.0101   1.000   0.908 |      0.833   0.7   1.01 |       1.000   0.0   1.18
+
+== 5. Tasa de aprendizaje (400 épocas) ==
+config            pérdida  acc.tr  acc.te | PURA éxito  choq  extra | ASIST éxito  choq  extra
+tasa 0.01          0.6918   0.767   0.726 |      0.191  20.4   1.01 |       0.986   0.0   2.39
+tasa 0.1           0.1540   0.963   0.863 |      0.621   1.5   1.01 |       1.000   0.0   1.34
+tasa 0.45          0.0110   1.000   0.908 |      0.835   0.6   1.01 |       1.000   0.0   1.22
+tasa 1.0           0.0029   1.000   0.917 |      0.849   0.7   1.01 |       1.000   0.0   1.17
+tasa 2.0           0.0011   1.000   0.926 |      0.869   0.8   1.00 |       1.000   0.0   1.14
+tasa 5.0           1.1846   0.414   0.397 |      0.058  44.4   1.01 |       0.951   0.0   4.06
+
+== 6. Por mapa (400 épocas, evaluación en pares NO entrenados) ==
+mapa      acc.te  PURA éxito  ASIST éxito
+mapa 0     0.910       0.832        1.000
+mapa 1     0.915       0.818        1.000
+mapa 2     0.901       0.849        1.000
+  Referencia: los 3 mapas se usan en entrenamiento; solo cambian los pares inicio-meta.
+
+== 7. Profesor DFS vs BFS vs A* (400 épocas) ==
+   'extra' = pasos dados / pasos óptimos (1.00 = ruta óptima)
+config            pérdida  acc.tr  acc.te | PURA éxito  choq  extra | ASIST éxito  choq  extra
+DFS                0.0098   1.000   0.946 |      0.092   0.0   1.00 |       0.692   0.0   4.24
+BFS                0.0110   1.000   0.908 |      0.835   0.6   1.01 |       1.000   0.0   1.22
+A*                 0.0115   1.000   0.914 |      0.852   1.1   1.01 |       1.000   0.0   1.11
+  Calidad del profesor (longitud de su ruta / óptima, media sobre todos los pares):
+    DFS : 2.101
+    BFS : 1.000
+    A*  : 1.000
